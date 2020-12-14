@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gameproject;
+package gameprojectcanov2020;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Luana Kimley SD1b
  */
-public class BlackJack
+public class LuanaGame3
 {
 
     public static void main(String[] args)
@@ -21,37 +21,40 @@ public class BlackJack
         Scanner keyboard = new Scanner(System.in);
 
         System.out.println("Welcome to the BlackJack game!");
-
-//      Rules:
-//      - Cards with ranks 2-10 will have the value of the number
-//      - Cards with rank J, Q, K will have the value of 10
-//      - Ace card can have the value of 1 or 11, based on needs
-//      - If the player card value reaches 21, it will be a BlackJack and player wins
-//      - If the player card value exceeds 21, player busts and dealer wins
-
-//      How to play:
-//      - The player will be dealt 2 cards at first
-//      - The dealer will also be dealt 2 cards (only 1 shown to the player)
-//      - Player will have choice to hit or stay
-//      - If player hits they will take another card
-//      - If player stays both the player and dealer opens card and whoever has more value wins
-//      - Dealer will need to hit until player chooses to stay or until dealer's card value reaches 17-21 or until dealer busts
-//      - If dealer's card value reaches 17, both the dealer & player must stay and the one with greater value wins
-//      
+        System.out.println();
+        System.out.println("========================== Rules ==========================");
+        System.out.println("- Cards with ranks 2-10 will have the value of the number");
+        System.out.println("- Cards with rank J, Q, K will have the value of 10");
+        System.out.println("- Ace card can have the value of 1 or 11, based on needs");
+        System.out.println("- If the player card value reaches 21, it will be a BlackJack and player wins");
+        System.out.println("If the player card value exceeds 21, player busts and dealer wins");
+        System.out.println();
+        System.out.println("======================== How to play ========================");
+        System.out.println("- The player will be dealt 2 cards at first");
+        System.out.println("- The dealer will also be dealt 2 cards (only 1 shown to the player)");
+        System.out.println("- Player will have choice to hit or stay");
+        System.out.println("- If player hits, they will take another card");
+        System.out.println("- If player stays both the player and dealer opens card and whoever has more value wins");
+        System.out.println("- Dealer will need to hit until player chooses to stay or until dealer's card value reaches 17-21 or until dealer busts");
+        System.out.println("- If dealer's card value reaches 17, both the dealer & player must stay and the one with greater value wins");
+        System.out.println();
 
         boolean play = true;
 
         while (play)
         {
+            System.out.println();
+            System.out.println("Game Start");
 //      Variables for player's & dealer's cards
-            int numCard, numCard2, numDCard, numDCard2;
-            String card1, card2, Dcard1, Dcard2;
+            int numCard, numCard2, numDCard, numDCard2, numDCard3;
+            String card1, card2, Dcard1, Dcard2, Dcard3;
 
 //      Shuffle the cards
             numCard = 1 + rand.nextInt(13);
             numCard2 = 1 + rand.nextInt(13);
             numDCard = 1 + rand.nextInt(13);
             numDCard2 = 1 + rand.nextInt(13);
+            numDCard3 = 1 + rand.nextInt(13);
 
 //      Variables for the values of the player's card        
             int value;
@@ -176,7 +179,7 @@ public class BlackJack
 
 //      Outputs the player's first 2 card & total value of the cards
             System.out.println();
-            System.out.println("Your cards are: ");
+            System.out.println("==== Your cards ====");
             System.out.println(card1 + " of " + suit);
             System.out.println(card2 + " of " + suit2);
             System.out.println("Total card value: " + ptotalValue);
@@ -262,6 +265,25 @@ public class BlackJack
 
             int dtotalValue = dValue + dValue2;
 
+            switch (numDCard3)
+            {
+                case 1:
+                    Dcard3 = "A";
+                    break;
+                case 11:
+                    Dcard3 = "J";
+                    break;
+                case 12:
+                    Dcard3 = "Q";
+                    break;
+                case 13:
+                    Dcard3 = "K";
+                    break;
+                default:
+                    Dcard3 = Integer.toString(numDCard);
+                    break;
+            }
+
 //      Variables for the dealer's suit        
             int numDSuit, numDSuit2;
             String Dsuit = "", Dsuit2 = "";
@@ -303,7 +325,7 @@ public class BlackJack
 
 //      Outputs dealer's 1st card (the second card is hidden)
             System.out.println();
-            System.out.println("Dealer's card is: ");
+            System.out.println("==== Dealer's card ====");
             System.out.println(Dcard1 + " of " + Dsuit);
             //Test: prints hidden dealer card to check if the value is correct
             //System.out.println(Dcard2 + Dsuit2);
@@ -317,7 +339,7 @@ public class BlackJack
                 String choice = keyboard.nextLine();
 
 //          If hit, player will get another card            
-                if (choice.equals("h"))
+                if (choice.equalsIgnoreCase("h"))
                 {
                     numCard = 1 + rand.nextInt(13);
 
@@ -388,12 +410,12 @@ public class BlackJack
                     if (dtotalValue < 17)
                     {
 
-                        numDCard2 = 1 + rand.nextInt(13);
+                        numDCard3 = 1 + rand.nextInt(13);
 
-                        switch (numDCard2)
+                        switch (numDCard3)
                         {
                             case 1:
-                                Dcard2 = "A";
+                                Dcard3 = "A";
                                 if (dtotalValue < 11)
                                 {
                                     value = 11;
@@ -406,22 +428,22 @@ public class BlackJack
                                 }
                                 break;
                             case 11:
-                                Dcard2 = "J";
+                                Dcard3 = "J";
                                 value = 10;
                                 dtotalValue += value;
                                 break;
                             case 12:
-                                Dcard2 = "Q";
+                                Dcard3 = "Q";
                                 value = 10;
                                 dtotalValue += value;
                                 break;
                             case 13:
-                                Dcard2 = "K";
+                                Dcard3 = "K";
                                 value = 10;
                                 dtotalValue += value;
                                 break;
                             default:
-                                Dcard2 = Integer.toString(numDCard);
+                                Dcard3 = Integer.toString(numDCard);
                                 value = numDCard;
                                 dtotalValue += value;
                                 break;
@@ -445,12 +467,50 @@ public class BlackJack
                                 break;
                         }
                         //Test: prints out dealer card & total to check if the value is correct
-                        //System.out.println("d card " + Dcard2 + Dsuit2);
+                        //System.out.println("d card " + Dcard3 + Dsuit2);
                         //System.out.println("d total: " + dtotalValue);
                     }
-                    else if (dtotalValue >= 17) // Else if dealer total value is more than 17, both player and dealer will need to stay
+                    else
                     {
+                        if (dtotalValue >= 17) // Else if dealer total value is more than 17, both player and dealer will need to stay
+                        {
+                            System.out.println();
+                            System.out.println("======= Statistics =======");
+                            System.out.println("Total card value: " + ptotalValue);
+                            System.out.println("Dealer's card value: " + dtotalValue);
+
+                            if (ptotalValue > dtotalValue && ptotalValue <= 21)
+                            {
+                                System.out.println();
+                                System.out.println("You win!");
+                                break;
+                            }
+                            else
+                            {
+                                if (ptotalValue == dtotalValue)
+                                {
+                                    System.out.println();
+                                    System.out.println("Draw.");
+                                    break;
+                                }
+                                else
+                                {
+                                    System.out.println();
+                                    System.out.println("You lose.");
+                                    break;
+                                }
+                            }
+
+                        }
+                    }
+                }
+                else
+                {
+                    if (choice.equalsIgnoreCase("s")) // Else if player choose to stay
+                    {
+
                         System.out.println();
+                        System.out.println("======= Statistics =======");
                         System.out.println("Total card value: " + ptotalValue);
                         System.out.println("Dealer's card value: " + dtotalValue);
 
@@ -460,51 +520,26 @@ public class BlackJack
                             System.out.println("You win!");
                             break;
                         }
-                        else if (ptotalValue == dtotalValue)
-                        {
-                            System.out.println();
-                            System.out.println("Draw.");
-                            break;
-                        }
                         else
                         {
-                            System.out.println();
-                            System.out.println("You lose.");
-                            break;
+                            if (ptotalValue == dtotalValue)
+                            {
+                                System.out.println();
+                                System.out.println("Draw.");
+                                break;
+                            }
+                            else
+                            {
+                                System.out.println();
+                                System.out.println("You lose.");
+                                break;
+                            }
                         }
-
-                    }
-                }
-                else if (choice.equals("s")) // Else if player choose to stay
-                {
-                    System.out.println();
-                    System.out.println("Dealer's card is: " + Dcard2 + " of " + Dsuit2);
-                    System.out.println();
-                    System.out.println("Total card value: " + ptotalValue);
-                    System.out.println("Dealer's card value: " + dtotalValue);
-
-                    if (ptotalValue > dtotalValue)
-                    {
-                        System.out.println();
-                        System.out.println("You win!");
-                        break;
-                    }
-                    else if (ptotalValue == dtotalValue)
-                    {
-                        System.out.println();
-                        System.out.println("Draw.");
-                        break;
                     }
                     else
                     {
-                        System.out.println();
-                        System.out.println("You lose.");
-                        break;
+                        System.out.println("Invalid input. Check your spelling!");
                     }
-                }
-                else
-                {
-                    System.out.println("Invalid input. Check your spelling & capitalization!");
                 }
 
             }
@@ -515,40 +550,55 @@ public class BlackJack
                 System.out.println();
                 System.out.println("BlackJack. You win!");
             }
-            else if (ptotalValue > 21)
-            {
-                System.out.println();
-                System.out.println("Busted. You lose.");
-            }
-            else if (dtotalValue > 21)
-            {
-                System.out.println();
-                System.out.println("Dealer's card is: " + Dcard2 + " of " + Dsuit2);
-                System.out.println();
-                System.out.println("Dealer total value: " + dtotalValue);
-                System.out.println("Dealer busted. You win!");
-            }
-            
-//          Play again?
-            System.out.println();
-            System.out.println("Play again? (y/n)");
-            String playAgain = keyboard.nextLine();
-            
-            if (playAgain.equals("n"))
-            {
-                play = false;
-                System.out.println();
-                System.out.println("Good game. Goodbye!");
-            }
-            else if (playAgain.equals("y"))
-            {
-                play = true;
-            }
             else
             {
-                System.out.println("Invalid input! Try again.");
+                if (ptotalValue > 21)
+                {
+                    System.out.println();
+                    System.out.println("Busted. You lose.");
+                }
+                else
+                {
+                    if (dtotalValue > 21)
+                    {
+                        System.out.println();
+                        System.out.println("Dealer's card is: " + Dcard3 + " of " + Dsuit2);
+                        System.out.println();
+                        System.out.println("Dealer total value: " + dtotalValue);
+                        System.out.println("Dealer busted. You win!");
+                    }
+                }
             }
-        
+
+//          Play again?
+            System.out.println();
+            String playAgain = "";
+
+            do
+            {
+                System.out.println("\nPlay again? (y/n)");
+                playAgain = keyboard.nextLine();
+
+                if (playAgain.equalsIgnoreCase("y"))
+                {
+                    play = true;
+                    break;
+                }
+                else
+                {
+                    if (playAgain.equalsIgnoreCase("n"))
+                    {
+                        play = false;
+                        System.out.println("\nGame over. Goodbye!");
+                        break;
+                    }
+                    else
+                    {
+                        System.out.println("Invalid input!");
+                    }
+                }
+            } while (!playAgain.equalsIgnoreCase("y") || !playAgain.equalsIgnoreCase("n"));
+
         }
     }
 }
