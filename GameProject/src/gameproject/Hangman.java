@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gameproject;
+package gameprojectcanov2020;
 
 import java.util.Scanner;
 import java.util.Random;
@@ -12,7 +12,7 @@ import java.util.Random;
  *
  * @author Luana Kimley SD1b
  */
-public class Hangman
+public class LuanaGame4
 {
 
     public static void main(String[] args)
@@ -35,7 +35,7 @@ public class Hangman
         {
 //          Player 1 to enter the secret word that will be guesses
             System.out.println();
-            System.out.println("Enter the secret word - no repeated letters, max 10 letters:");
+            System.out.println("Enter the secret word - no repeated letters, max 10 letters, all lowercase:");
             String secret = keyboard.nextLine();
 
             if (secret.length() >= 1 && secret.length() <= 10)
@@ -115,7 +115,7 @@ public class Hangman
                             System.out.println();
                             System.out.println("The word is: " + secret);
                             System.out.println("You win!");
-                            System.out.println("You guessed the word in " + attempt + " attempts.");
+                            System.out.println("You guessed the word in " + attempt + " attempt(s).");
                             System.out.println();
                             break;
                         }
@@ -131,22 +131,30 @@ public class Hangman
                 }
 
 //          Play again?
-                System.out.println("\nPlay again? (y/n)");
-                String playAgain = keyboard.nextLine();
-
-                if (playAgain.equals("y"))
+                
+                String playAgain;
+                
+                do
                 {
-                    play = true;
-                }
-                else if (playAgain.equals("n"))
-                {
-                    play = false;
-                    System.out.println("\nGame over. Goodbye!");
-                }
-                else
-                {
-                    System.out.println("Invalid input!");
-                }
+                    System.out.println("\nPlay again? (y/n)");
+                    playAgain = keyboard.nextLine();
+                    
+                    if (playAgain.equalsIgnoreCase("y"))
+                    {
+                        play = true;
+                        break;
+                    }
+                    else if (playAgain.equalsIgnoreCase("n"))
+                    {
+                        play = false;
+                        System.out.println("\nGame over. Goodbye!");
+                        break;
+                    }
+                    else
+                    {
+                        System.out.println("Invalid input!");
+                    }
+                } while (!playAgain.equalsIgnoreCase("y") || !playAgain.equalsIgnoreCase("n"));
             }
             else
             {
